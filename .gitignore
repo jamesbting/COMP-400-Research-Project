@@ -1,0 +1,21 @@
+*__pycache__
+*.idea
+*teams
+*.vscode
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+*.code-workspace
+
+# Local History for Visual Studio Code
+.history/
+src/__pycache__
+/.vscode
+/models
+*/node_modules
+commands.txt
+post-cleaning-dataset.csv
+pre-cleaning-dataset.csv
+*rejected-models
