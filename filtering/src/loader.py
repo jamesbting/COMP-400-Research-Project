@@ -1,4 +1,5 @@
 import csv
+
 def load_data(file_name, by_combination = False):
     print("Loading data into the program")
     dataset = {}
@@ -13,11 +14,12 @@ def load_data(file_name, by_combination = False):
     f.close()   
     print("Done loading data.")
    
-    with open('teams/team_dict.txt', 'w') as f:
+    with open('data/team_dict.txt', 'w') as f:
         f.write(str(dataset))
     f.close()
     return dataset
 
+#build the dataset
 def add_data(dataset, row):
     if(len(row) != 11): 
         raise ValueError
@@ -52,4 +54,4 @@ def list_to_string(row):
         res += (str(element) + ',')
     return res[0:len(res)-1]
 
-load_win_rate("../data/win_rate.txt")
+load_win_rate("data/win_rate.txt")

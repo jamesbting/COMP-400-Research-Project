@@ -26,7 +26,7 @@ config = {
 
 
 def main():
-    initial_state = generate_initial_state([], ['139'])
+    initial_state = generate_initial_state(['121', '24', '18'], ['11', '26'])
     default_policy = config['default_policy']
     i = config['num_experiments']
     save_location = config['results_location']

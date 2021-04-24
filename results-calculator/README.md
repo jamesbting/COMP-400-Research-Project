@@ -21,7 +21,7 @@ Before running the program, ensure that the file locations are as desired. The p
 
 ## Running the program
 
-To run the program, go to the location that the repository is located, and issue the following command:
+To run the program, go to the location that the program is located, and issue the following command:
 
 ```
 python src/main.py

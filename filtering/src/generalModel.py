@@ -1,11 +1,12 @@
 class Model:
+    #constructor
     def __init__(self, data, win_rate, num_of_recommendations):
         self.data = data
         self.win_rate = win_rate
         self.num_of_recommendations = num_of_recommendations
 
+    #takes as input the partial blue and red teams, and finds sutable recommendations for both
     def predict(self, blue_team, red_team):
-        
         blue_team.sort()
         red_team.sort()
         
@@ -21,6 +22,7 @@ class Model:
                 red_team_recommendations[team_combination] = self.data[team_combination][0] / self.data[team_combination][1]
         return self.sort_dictionary(blue_team_recommendations), self.sort_dictionary(red_team_recommendations)
 
+    #find the top k combinations with the best win rate
     def sort_dictionary(self, dict):
         list_of_items = sorted(dict.items(), reverse=True, key = lambda x: x[1])
         res = {}
@@ -29,6 +31,7 @@ class Model:
             res[key] = value
         return res
 
+    #check if a team is a subset
     def is_sub_team(self, team, subteam):
         team_set = set(team)
         team_subset = set(subteam)

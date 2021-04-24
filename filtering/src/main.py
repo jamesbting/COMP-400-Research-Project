@@ -6,9 +6,10 @@ import psutil
 import time
 from datetime import date
 
+#config
 config = { 
-    'dataset':"../data/filtered-dataset-no-header.csv",
-    'win_rate_file': '../data/win_rate.txt',
+    'dataset':"data/filtered-dataset-no-header.csv",
+    'win_rate_file': 'data/win_rate.txt',
     'num_recs': 1,
     'num_requests': 100,
     'save_results': False,
@@ -19,10 +20,14 @@ def main():
     run_experiment(config["num_requests"], location = config['results_location'])
 
 def run_experiment(num_requests, location = None):
-    data = load(config["dataset"])
-
+    #load the data
+    data = load(config["dataset"]) 
     win_rate = load_win_rate(config["win_rate_file"])
+
+    #instantiate the filtering model object
     model = Model(data, win_rate, config['num_recs'])
+
+    #sample input
     blue_team = ['121', '24', '18']
     red_team = ['11', '26']
     
@@ -36,12 +41,15 @@ def run_experiment(num_requests, location = None):
     if config['save_results']:
         save_results(results, recs, location)
 
+#print out the recommendations to std out
 def combine_recs(blue, red):
     res = []
     for b, r in zip(blue.keys(),red.keys()):
         res.append(list(b) + list(r))
         print(list(b) + list(r))
     return res
+
+#make a recommendation and return the latency, and the memory usage
 def make_prediction(model, blue_team, red_team, prediction_function):
     start_time = time.time()
     blue, red = prediction_function(blue_team, red_team)
@@ -53,6 +61,7 @@ def make_prediction(model, blue_team, red_team, prediction_function):
     print(red)
     return [finish_time - start_time, peak_memory_usage,], blue, red
 
+#save results, if necessary
 def save_results(results, recs, location):
     today = date.today().strftime('%d-%m-%Y')
     curr_time = time.time()
@@ -77,4 +86,6 @@ def save_results(results, recs, location):
     average_mem /= len(results)
     print(f'Average time: {average_time}')
     print(f'Average peak memory usage: {average_mem}')
-main()
+
+if __name__ =='__main__':
+    main()

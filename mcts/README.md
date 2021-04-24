@@ -30,7 +30,7 @@ After downloading the repository, and installing all the modules, ensure that th
 
 ## Running the program
 
-To run the program, navigate to the directory in which the repository is downloaded, and then run the following command: ```python src/main.py```
+To run the program, navigate to the directory containing the entire program, and then run the following command: ```python src/main.py```
 
 ## Results
 
