@@ -6,14 +6,11 @@ This is necessary for interprerting the ID's given by the recommendation system 
 
 
 ---------!!!!!!!!!!!!IMPORTANT!!!!!!!!!!!!---------
-For all programs to work properly, you must download the following files from the following locations:
-
-This file should be put in the data folder and named: "pre-cleaning-dataset.csv"
-Pre-cleaning dataset: ohttps://mcgill-my.sharepoint.com/:x:/g/personal/james_ting_mail_mcgill_ca/EXswNVchIbJAvkMxeqTKEoUBaNGiC1EkTTaR0EnMfO58uw?e=GGjcey
+For all programs to work properly, you must download the following archive and extract it. You can download the archive from here:
+https://mcgill-my.sharepoint.com/:u:/g/personal/james_ting_mail_mcgill_ca/Ef623xj_2p9Oux06Xig89tYBM_I3Hgmt4SZoefsrsoINWQ?e=baiMSp
 
 
-This file should be put in the data folder and named: "post-cleaning-dataset.csv"
-Post-cleaning dataset: https://mcgill-my.sharepoint.com/:x:/g/personal/james_ting_mail_mcgill_ca/EX1g_CIEHrVNpAtBpL1fY2MBCAfs686WCrJNUXQvg14BTw?e=6eeuyy
-
-
-If this naming convention is not followed, the programs can still work, but the locations of each file must be specified correctly in the config for each program.
+Once extracted, there will be 2 files:
+"pre-cleaning-dataset.csv" and "post-cleaning-dataset.csv"
+These files should be put in the data folder without being renamend with all the other datasets to ensure that the programs work properly. 
+The programs can still work if they are not, but it will be necessary to reconfigure each program. 
