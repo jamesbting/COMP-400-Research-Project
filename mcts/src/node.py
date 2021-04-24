@@ -15,6 +15,7 @@ class Node(object):
         self.possible_actions = self.generate_possible_actions()
         self.depth = depth
 
+    #expand the node by randomly selecting an action and adding a child node
     def expand(self):
         action = self.possible_actions[int(random() * (len(self.possible_actions) - 1))]
         self.possible_actions.remove(action)
@@ -23,7 +24,7 @@ class Node(object):
         return new_child
 
     def best_child(self, exploration_term=pow(2, -0.5)):
-        confidence_bounds = [c.q / c.n + (exploration_term * sqrt(2 * log(self.n) / c.n)) for c in self.children]
+        confidence_bounds = [c.q / c.n + (exploration_term * sqrt(2 * log(self.n) / c.n)) for c in self.children] #tree policy for UCT
         max_index = 0
         for i in range(len(confidence_bounds)):
             if confidence_bounds[i] > confidence_bounds[max_index]:
@@ -40,6 +41,7 @@ class Node(object):
                 redTeamSelected += 1
         return blueTeamSelected == 5 and redTeamSelected == 5
 
+    #generate possible actions for a node
     def generate_possible_actions(self):
         res = []
         #check for which champions have been selected already

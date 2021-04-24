@@ -12,6 +12,7 @@ class ChampionNet(nn.Module):
         self.final_layer_activation = nn.Sigmoid()
         self.dropout = nn.Dropout(p=0.5)
 
+    #forward pass
     def forward(self, x):
         x = self.nonlin(self.fc1(x))
         x = self.nonlin(self.fc2(x))

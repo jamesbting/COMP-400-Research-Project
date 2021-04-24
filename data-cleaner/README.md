@@ -45,7 +45,7 @@ The Python program expects the ```headers.txt``` file to be at ```../data/header
   - ```desired_columns```: List of string representing the columns that are desired from the dataset
 - ```win_rate```:
   - ```enabled```: Boolean representing if you want the program to build this dataset
-  - ```output```: String representing the path to the output. . Will overwrite any existing file in that location with the same name. Includes the name and file extension, file extension must be a TXT
+  - ```output```: String representing the path to the output. Will overwrite any existing file in that location with the same name. Includes the name and file extension, file extension must be a TXT
 
 ## Running the program
 

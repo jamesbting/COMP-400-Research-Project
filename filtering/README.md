@@ -51,4 +51,4 @@ The results are stored in the results folder by default. Running the program wit
 
 For results.csv: Each row will represent one experiment, with 2 numbers. The first number is the time to run the experiment, and the second one is the peak memory usage in megabytes. 
 
-For recs.csv: Each row will represent one experiment, with 10 integers. It is the recommendation of the algorithm for that experiement.
+For recs.csv: Each row will represent one experiment, with 10 integers. It is the recommendation of the algorithm for that experiment.

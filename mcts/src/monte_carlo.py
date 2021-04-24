@@ -2,6 +2,7 @@ from node import Node
 from random import random as random
 import queue
 
+#main iterator function for UCT
 def UCTSearch(initial_state, max_iters, update_frequency, simulate_game, simulation_metadata=None):
     first_pick = Node.determine_next_pick(initial_state)
     print(f"The {first_pick} team will pick next.")
@@ -15,7 +16,7 @@ def UCTSearch(initial_state, max_iters, update_frequency, simulate_game, simulat
             print("Iteration: ", i)
     return root.best_child(0)
 
-
+#tree policy
 def treePolicy(node):
     curr = node
     while not curr.is_terminal():

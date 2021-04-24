@@ -7,6 +7,7 @@ from monte_carlo import UCTSearch as UCT
 from datetime import date
 import csv
 
+#config
 config = {
     'champions': {
         'fileName': "../data/champions-cleaned.json"
@@ -21,6 +22,7 @@ config = {
             'location': "../nn-reward-function/models/champion-model-06-04-2021-1617757457-ls256-lr0.0005-l20.05/model.pickle"
         },
     'num_experiments': 1000,
+    'save_results': False,
     'results_location': 'results/real'
 }
 
@@ -31,6 +33,7 @@ def main():
     i = config['num_experiments']
     save_location = config['results_location']
 
+    #apply the default policy and do any metadata setup
     if default_policy == 'random':
         run_experiment(default_policy, i, initial_state, simulation.random_winner, location=save_location)
     elif default_policy == 'cosine':
@@ -48,6 +51,7 @@ def main():
     else:
         print(f'Reward function {default_policy} not defined.')
 
+#run the experiement
 def run_experiment(default_policy, iterations, initial_state, simulation_function, metadata=None, location=None):
     results = []
     recs = []
@@ -55,13 +59,13 @@ def run_experiment(default_policy, iterations, initial_state, simulation_functio
         time_and_mem, rec = run_algorithm(initial_state, simulation_function, simulation_metadata=metadata)
         results.append(time_and_mem)
         recs.append(rec)
-    if location is not None:
+    if config['save_results']:
         save_results(results, recs, default_policy, location)
 
-
+#compute the times and memory usage
 def run_algorithm(initial_state, defaultPolicy, simulation_metadata=None):
     start_time = time.time()
-    res = UCT(initial_state, config['iterations'], config['update_frequency'], defaultPolicy, simulation_metadata)
+    res = UCT(initial_state, config['iterations'], config['update_frequency'], defaultPolicy, simulation_metadata) #call to UCT
     finish_time = time.time()
     memory = psutil.Process().memory_info().peak_wset / 1000000
     node_count = count_nodes(res.parent)
@@ -75,7 +79,7 @@ def show_results(result, node_count, time, memory_usage):
     print('Took', time, 'seconds to run, and average iteration time of', time / config['iterations'], 'seconds.')
     print('Peak memory usage was:', memory_usage, 'megabytes.')
 
-
+#count the number of nodes created
 def count_nodes(root):
     q = queue.Queue()
     count = 0

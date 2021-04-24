@@ -26,7 +26,33 @@ This program has not been validated on any other versions of the perquisites.
 
 ## Setting up the program 
 
-After downloading the repository, and installing all the modules, ensure that the file locations in the config dictionary are correct. Select the number of iterations for the MCTS to run, and the default policy to use.
+After downloading the repository, and installing all the modules, ensure that the file locations in the config dictionary located in main.py are correct. Select the number of iterations for the MCTS to run, and the default policy to use.
+
+**Configuration**
+
+\- ```champions```:
+
+ 	\- ```fileName```: String representing the path to the cleaned champions JSON file.
+
+ \- ```cleaned```: String representing the path to the cleaned dataset. Will overwrite any existing file in that location with the same name. Includes the name and file extension, file extension must be a CSV
+
+ \- ```win_rate_file```: String representing the path to the win rate file. Must be a TXT.
+
+ \- ```iterations```: Integer for the number of iterations of MCTS
+
+\- ```update_frequency```: Integer to tell the program how often to update the user on which iteration of MCTS the program is on
+
+ \- ```default_policy```: String representing the default policy to be used. Options are: 'random', 'nn', 'cosine', 'mc'
+
+\- ```nn```:
+
+​	\- ```champions```: Path to the model.pickle file to instantiate the network.
+
+ \- ```num_experiments```: Number of experiments to run
+
+ \- ```enabled```: Boolean representing if you want the program to save the results and recommendations
+
+ \- ```results_location```: String representing the directory to save the results. 
 
 ## Running the program
 
@@ -34,4 +60,8 @@ To run the program, navigate to the directory containing the entire program, and
 
 ## Results
 
-The results are stored in the results folder by default. Running the program once will generate one results.csv file, stamped with the date, time and default policy. Each row will represent one experiment, with 2 numbers. The first number is the time to run the experiment, and the second one is the peak memory usage in megabytes. 
+The results are stored in the results folder by default. Running the program once will generate 2 files: results.csv and recs.csv, stamped with the date, time and default policy. 
+
+results.csv: Each row will represent one experiment, with 3 numbers. The first number is the time to run the experiment, the second one is the peak memory usage in megabytes, the final number is the number of nodes created. 
+
+recs.csv: Will contain 10 numbers, representing the recommendation of the algorithm for each experiment. 
