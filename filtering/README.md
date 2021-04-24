@@ -21,6 +21,20 @@ By running the following command ```pip install psutil```.
 
 After downloading the repository, and installing all the modules, ensure that the file locations in the config dictionary located in main.py are correct. Select the number of recommendation and experiments.
 
+**Configuration**
+
+ \- ```dataset```:  String representing the path to the filtered dataset, with no headers. Must be a CSV. 
+
+ \- ```win_rate_file```: String representing the path to the win rate file. Must be a CSV.
+
+ \- ```num_recs```: Integer representing the number of recommendations to make for each experiment
+
+\- ```num_requests```: Number of experiments to run
+
+ \- ```save_results```: Boolean representing if you want the program to save the results and recommendations
+
+ \- ```results_location```: Path to a directory to save the results and recommendations
+
 ### Loading the data
 
 The program will load the data into memory for usage to start the model. Loading by team combination will mean that the program will load a dictionary mapping the combinations to the win rate of each combination. 
