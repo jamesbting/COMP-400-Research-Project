@@ -7,7 +7,8 @@ config = {
     'clean': {
         "enabled": True,
         "original": '../data/pre-cleaning-dataset.csv',
-        "cleaned": '../data/post-cleaning-dataset.csv'
+        "cleaned": '../data/post-cleaning-dataset.csv',
+        'header_file': '../data/header.txt'
     },
     'filter_champions': {
         "enabled": True,
@@ -37,7 +38,7 @@ config = {
 def main():
     if config['clean']["enabled"]:
         print('Cleaning the dataset...')
-        clean(config['clean']['original'], config['clean']['cleaned'])
+        clean(config['clean']['original'], config['clean']['cleaned'], config['clean']['header_file'])
     if config['filter_champions']["enabled"]:
         print('Filtering champion data from the dataset...')
         filter.filter(config['clean']["cleaned"], config['filter_champions']["output"],

@@ -8,8 +8,9 @@ from datetime import date
 
 #config
 config = { 
-    'dataset':"data/filtered-dataset-no-header.csv",
-    'win_rate_file': 'data/win_rate.txt',
+    'dataset':"../data/filtered-dataset-no-header.csv",
+    'win_rate_file': '../data/win_rate.txt',
+    'team_dictionary': '../data/team_dict.txt',
     'num_recs': 1,
     'num_requests': 100,
     'save_results': False,
@@ -21,7 +22,7 @@ def main():
 
 def run_experiment(num_requests, location = None):
     #load the data
-    data = load(config["dataset"]) 
+    data = load(config["dataset"], config['team_dictionary']) 
     win_rate = load_win_rate(config["win_rate_file"])
 
     #instantiate the filtering model object
@@ -38,6 +39,7 @@ def run_experiment(num_requests, location = None):
         res, blue, red = make_prediction(model, blue_team, red_team, model.predict)
         results.append(res)
         recs.append(combine_recs(blue, red))
+        print(res)
     if config['save_results']:
         save_results(results, recs, location)
 
@@ -59,7 +61,7 @@ def make_prediction(model, blue_team, red_team, prediction_function):
     print(blue)
     print('Red recommendations:')
     print(red)
-    return [finish_time - start_time, peak_memory_usage,], blue, red
+    return [finish_time - start_time, peak_memory_usage], blue, red
 
 #save results, if necessary
 def save_results(results, recs, location):

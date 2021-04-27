@@ -2,9 +2,9 @@
 import csv
 
 
-def clean(original_file, new_file):
+def clean(original_file, new_file, header_file):
     checkUniqueness(original_file)
-    removeDuplicates(original_file, new_file)
+    removeDuplicates(original_file, new_file, header_file)
 
 
 def checkUniqueness(filename):
@@ -25,7 +25,7 @@ def checkUniqueness(filename):
 
 
 # load the headers
-def get_headers(filename="../data/headers.txt"):
+def get_headers(filename):
     f = open(filename, "r")
     content = f.read()
     f.close()
@@ -33,10 +33,10 @@ def get_headers(filename="../data/headers.txt"):
 
 
 # remove the duplicate match IDs, and remove the match IDs with incorrect length
-def removeDuplicates(filename, new_filename):
+def removeDuplicates(filename, new_filename, header_file):
     matchIDs = set()
     new_file = open(new_filename, "w")
-    new_file.write(get_headers())
+    new_file.write(get_headers(header_file))
     with open(filename, "r") as f:
         reader = csv.reader(f, delimiter=',')
         for row in reader:
