@@ -25,6 +25,34 @@ This program has not been validated on any other versions of the perquisites.
 
 After downloading the repository, and installing all the modules, ensure that the file locations in the config dictionary are correct. Configure the hyperparameters of the neural network in the config dictionary, and configure if you want the graphs shown/saved. 
 
+**Configuration**
+
+```data_set```: Path to the filtered dataset, with no headers.
+
+```model```:
+
+​	```save```: Boolean representing if you want to save the model.
+
+​	```location```: Directory to save the model
+
+​	```layer_size```: Number of nodes in the hidden layer
+
+​	```learning_rate```: Learning rate for gradient descent
+
+```batch_size```: Batch size for gradient descent
+
+```Epochs```: Number of epochs to run.
+
+```validation_set_size```: Float in the range [0,1] representing the percentage of the entire dataset to use as validation set
+
+```lambda2```: Float for L2 regularization
+
+```save_graphs```: Boolean representing if you want the program to save the graphs
+
+```show_graphs```: Boolean representing if you want the program to show the graphs to STDOUT
+
+```device```: Device to use for training. 'cuda0' for a CUDA device, 'cpu' to use the CPU
+
 ## Running the program
 
 To run the program, ensure you have an editor that can run Jupyter Notebooks. Then, simply run all the cells and the NN will be trained. 

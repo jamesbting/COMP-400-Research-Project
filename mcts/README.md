@@ -30,29 +30,29 @@ After downloading the repository, and installing all the modules, ensure that th
 
 **Configuration**
 
-\- ```champions```:
+```champions```:
 
- 	\- ```fileName```: String representing the path to the cleaned champions JSON file.
+​	```fileName```: String representing the path to the cleaned champions JSON file.
 
- \- ```cleaned```: String representing the path to the cleaned dataset. Will overwrite any existing file in that location with the same name. Includes the name and file extension, file extension must be a CSV
+```cleaned```: String representing the path to the cleaned dataset. Will overwrite any existing file in that location with the same name. Includes the name and file extension, file extension must be a CSV
 
- \- ```win_rate_file```: String representing the path to the win rate file. Must be a TXT.
+```win_rate_file```: String representing the path to the win rate file. Must be a TXT.
 
- \- ```iterations```: Integer for the number of iterations of MCTS
+```iterations```: Integer for the number of iterations of MCTS
 
-\- ```update_frequency```: Integer to tell the program how often to update the user on which iteration of MCTS the program is on
+```update_frequency```: Integer to tell the program how often to update the user on which iteration of MCTS the program is on
 
- \- ```default_policy```: String representing the default policy to be used. Options are: 'random', 'nn', 'cosine', 'mc'
+```default_policy```: String representing the default policy to be used. Options are: 'random', 'nn', 'cosine', 'mc'
 
-\- ```nn```:
+```nn```:
 
-​	\- ```champions```: Path to the model.pickle file to instantiate the network.
+​	```champions```: Path to the model.pickle file to instantiate the network.
 
- \- ```num_experiments```: Number of experiments to run
+```num_experiments```: Number of experiments to run
 
- \- ```enabled```: Boolean representing if you want the program to save the results and recommendations
+```save_results```: Boolean representing if you want the program to save the results and recommendations
 
- \- ```results_location```: String representing the directory to save the results. 
+```results_location```: String representing the directory to save the results. 
 
 ## Running the program
 

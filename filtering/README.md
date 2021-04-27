@@ -37,7 +37,7 @@ After downloading the repository, and installing all the modules, ensure that th
 
 ### Loading the data
 
-The program will load the data into memory for usage to start the model. Loading by team combination will mean that the program will load a dictionary mapping the combinations to the win rate of each combination. 
+The program will load the data into memory for usage to start the model. The program will load all team combinations and their respective win rates into   memory. 
 
 ## Running the program
 

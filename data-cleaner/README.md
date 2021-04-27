@@ -2,7 +2,7 @@
 
 This program will clean, and filter the data and produce the various datasets. Ensure the config is set properly to clean and build the right datasets. This repository actually contains 2 programs, one written in Python and one written in NodeJS.
 
-The NodeJS program serves only to clean the champions.json file obtained from here: http://ddragon.leagueoflegends.com/cdn/11.8.1/data/en_US/champion.json. This JSON contains a lot of data about champions such as descriptions and difficulty values that are not relevant for this project. It then takes the name and key of each champion and then puts it into a new cleaned-champions.json file.
+The NodeJS program serves only to clean the champions.json file obtained from here: http://ddragon.leagueoflegends.com/cdn/11.8.1/data/en_US/champion.json. Note that the linked JSON contains a new champion that was released after the dataset was built, and will not work for this program. Use the included JSON in the repository. This link is included for your reference only. This JSON contains a lot of data about champions such as descriptions and difficulty values that are not relevant for this project. It then takes the name and key of each champion and then puts it into a new cleaned-champions.json file.
 
 The Python program cleans the original dataset, and then produces every other dataset file required by the other programs. It creates the following files:
 
@@ -37,6 +37,7 @@ The Python program expects the ```headers.txt``` file to be at ```../data/header
   - ```enabled```: Boolean representing if you want the program to build this dataset
   - ```original```: String representing the path to the original dataset. Must be a CSV.
   - ```cleaned```: String representing the path to the cleaned dataset. Will overwrite any existing file in that location with the same name. Includes the name and file extension, file extension must be a CSV
+  - ```header_file```: String representing the path to the header file. Must be a txt containing a single line.
 - ```filter_champions```:
   - ```enabled```: Boolean representing if you want the program to build this dataset
   - ```champion_dictionary```: Path to the cleaned champion dictionary built by the NodeJS program. Must be a JSON file.

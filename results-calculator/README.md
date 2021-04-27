@@ -10,14 +10,20 @@ Before running the program, ensure you have the following dependencies installed
 - Python 3.9.2
 - PyTorch 1.7.1
 
-## Before running
+
+
+## Setting up the program 
 
 Before running the program, ensure that the file locations are as desired. The program has configuration options:
 
-- model: A string representing the path to the desired model. The model should be a PyTorch neural network stored as a ```.pickle``` file.
-- results_files: A list containing strings that are paths to all the files with the latency and memory results. Each row should be 2 floats, where the first float is the latency and second float is the memory usage.
-- rec_files: A list containing strings that are paths to all the files containing the recommendations. Each file should be a csv, where each row contains 10 numbers, representing the recommendation of the algorithm
-- percentile: the percentile of latency to find. Default to 99th percentile
+**Configuration**
+
+- ```model```: A string representing the path to the desired model. The model should be a PyTorch neural network stored as a ```.pickle``` file.
+- ```results_files```: A list containing strings that are paths to all the files with the latency and memory results. Each row should be 2 floats, where the first float is the latency and second float is the memory usage.
+- ```rec_files```: A list containing strings that are paths to all the files containing the recommendations. Each file should be a csv, where each row contains 10 numbers, representing the recommendation of the algorithm
+- ```percentile```: the percentile of latency to find. Default to 99th percentile
+
+
 
 ## Running the program
 

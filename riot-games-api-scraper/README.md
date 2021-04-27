@@ -37,7 +37,7 @@ You can run ```npm install``` to install them all automatically, or install them
 
 ## Before running
 
-Before running the program, ensure that the file location is correct in the default.yaml file. Here you can also configure the behavior of the program, including which regions to scrape.
+Before running the program, ensure that the file location is correct in the ```config/default.yaml ```file. Here you can also configure the behavior of the program, including which regions to scrape.
 
 ## Running the program
 
@@ -47,4 +47,5 @@ To run the program, go to the location that the repository is located, and issue
 node src/index.js <API KEY>
 ```
 
-where API Key is your Riot Games API key. If running on Linux, you can run the screen command to keep it running in the background.
+where API Key is your Riot Games API key. You are expected to obtain your own API key from the Riot Games API website(https://developer.riotgames.com/).  If running on Linux, you can run the screen command to keep it running in the background.
+
