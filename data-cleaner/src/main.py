@@ -8,7 +8,7 @@ config = {
         "enabled": True,
         "original": '../data/pre-cleaning-dataset.csv',
         "cleaned": '../data/post-cleaning-dataset.csv',
-        'header_file': '../data/header.txt'
+        'header_file': '../data/headers.txt'
     },
     'filter_champions': {
         "enabled": True,

@@ -4,12 +4,14 @@ import json
 
 # filter the desire columns, write the header file
 def filter(file_name, output_file_name, desired_columns, champion_dictionary, write_headers):
+    
     valid_length = 1150
     input_file = open(file_name, "r")
     output_file = open(output_file_name, "w", newline='')
     champion_dictionary = json.load(open(champion_dictionary, 'r'))
     reader = csv.reader(input_file, delimiter=',')
     writer = csv.writer(output_file, delimiter=',')
+
     first_row = True
     selected_columns = []
     i = 0
@@ -29,7 +31,7 @@ def filter(file_name, output_file_name, desired_columns, champion_dictionary, wr
             cols = convert_to_champion_key(selected, champion_dictionary)
             writer.writerow(cols)
             i += 1
-    print('Found and filtered', i, 'valid matches with no missing data')
+    print(f'Found and filtered {i} valid matches with no missing data')
     input_file.close()
     output_file.close()
     print('Done filtering data.')

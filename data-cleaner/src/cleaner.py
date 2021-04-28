@@ -3,26 +3,7 @@ import csv
 
 
 def clean(original_file, new_file, header_file):
-    checkUniqueness(original_file)
     removeDuplicates(original_file, new_file, header_file)
-
-
-def checkUniqueness(filename):
-    matchIDs = set()
-    count = 0
-    duplicates = 0
-    with open(filename, "r") as f:
-        reader = csv.reader(f, delimiter=',')
-        for row in reader:
-            matchID = row[0]
-            if matchID not in matchIDs:
-                matchIDs.add(matchID)
-            else:
-                duplicates += 1
-            count += 1
-    f.close()
-    print(f'Found {duplicates} "repeated match IDs out of {count} matches')
-
 
 # load the headers
 def get_headers(filename):
@@ -34,15 +15,26 @@ def get_headers(filename):
 
 # remove the duplicate match IDs, and remove the match IDs with incorrect length
 def removeDuplicates(filename, new_filename, header_file):
-    matchIDs = set()
-    new_file = open(new_filename, "w")
-    new_file.write(get_headers(header_file))
-    with open(filename, "r") as f:
-        reader = csv.reader(f, delimiter=',')
-        for row in reader:
-            matchID = row[0]
-            if matchID not in matchIDs and len(row) == 1150:
-                new_file.write('\n')
-                new_file.write(','.join(row))
-            matchIDs.add(matchID)
+    matchIDs = {}
+    count = 0
+    duplicates = 0
+    #open the appopriate files and set up reader and writer
+    new_file = open(new_filename, "w",newline='')
+    original_file = open(filename, "r")
+    writer = csv.writer(new_file, delimiter=',')
+    reader = csv.reader(original_file, delimiter=',')
+
+    writer.writerow(get_headers(header_file).split(','))
+    
+    for row in reader:
+        matchID = row[0]
+        if matchID not in matchIDs and len(row) == 1150:
+            writer.writerow(row)
+        elif matchID in matchIDs:
+            duplicates += 1
+        matchIDs[matchID] = matchID
+        count += 1
+
+    print(f'Found {duplicates} "repeated match IDs out of {count} matches')
     new_file.close()
+    original_file.close()
