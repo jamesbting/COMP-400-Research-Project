@@ -5,9 +5,12 @@ const writer = require('./writer')
 const SUMMONER_REGION = config.get('api.summonerRegion')
 const MATCH_REGION = config.get('api.matchRegion')
 
+
+//API endpoints
 const GET_ACCOUNT_ID_URL = `https://${SUMMONER_REGION}.api.riotgames.com/lol/summoner/v4/summoners/by-name/`
 const GET_MATCH_HISTORY_URL = `https://${MATCH_REGION}.api.riotgames.com/lol/match/v4/matchlists/by-account/`
 const GET_MATCH_DATA_URL = `https://${MATCH_REGION}.api.riotgames.com/lol/match/v4/matches/`
+
 class Scraper {
 	constructor(apiKey, seedMatch) {
 		this.apiKey = apiKey
@@ -17,11 +20,12 @@ class Scraper {
 		writer.startup()
 		this.intialize(seedMatch)
 	}
-
+	//push the seed match onto the stack
 	intialize(seedMatch) {
 		this.stack.push(seedMatch)
 	}
 
+	//get an account ID for a summoner name
 	async getAccountID(summonerName) {
 		return new Promise((resolve, reject) => {
 			request(
@@ -36,6 +40,7 @@ class Scraper {
 		})
 	}
 
+	//get match history for an account ID
 	async getMatchHistory(accountId) {
 		return new Promise((resolve, reject) => {
 			request(
@@ -51,6 +56,7 @@ class Scraper {
 		})
 	}
 
+	//get match data for a match ID
 	async getMatchDataByMatchID(matchID, callback) {
 		return new Promise((resolve, reject) => {
 			request(`${GET_MATCH_DATA_URL}${matchID}?api_key=${this.apiKey}`)
@@ -66,7 +72,7 @@ class Scraper {
 		})
 	}
 
-
+	//main scraping algorithm to traverse the matches
 	async scrape() {
 		while(this.stack.length !== 0) {
 			const currentMatch = this.stack.pop()

@@ -23,6 +23,7 @@ class Node(object):
         self.children.append(new_child)
         return new_child
 
+    #find the best child of the current
     def best_child(self, exploration_term=pow(2, -0.5)):
         confidence_bounds = [c.q / c.n + (exploration_term * sqrt(2 * log(self.n) / c.n)) for c in self.children] #tree policy for UCT
         max_index = 0
@@ -31,6 +32,7 @@ class Node(object):
                 max_index = i
         return self.children[max_index]
 
+    #check if the node is termnal
     def is_terminal(self):
         blueTeamSelected = 0
         redTeamSelected = 0

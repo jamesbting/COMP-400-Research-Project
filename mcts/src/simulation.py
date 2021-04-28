@@ -28,6 +28,7 @@ def cosine_similarity(state, simulation_metadata):
             reward = combinations[combination]
     return reward
 
+#cosine similarity function
 def cosine(a, b):
     a = np.array(a)
     b = np.array(b)
@@ -35,6 +36,7 @@ def cosine(a, b):
     norm_b = np.linalg.norm(b)
     return np.dot(a, b) / (norm_a * norm_b)
 
+#load the team combinations into memory
 def cosine_metadata(filename):
     res = {}
     with open(filename, 'r') as f:
@@ -63,6 +65,7 @@ def load_nn(filename):
     model.eval()
     return model
 
+#convert a short game state into long game state
 def convert_to_state(combination):
     res = [0] * 154 #154 champions
     for i in range(5):
@@ -72,6 +75,7 @@ def convert_to_state(combination):
         res[int(combination[i])] = -1
     return res
 
+#perform a forward pass on the neural network
 def forward_pass(state, simulation_metadata):
     long_state = convert_to_state(state)
     net = simulation_metadata

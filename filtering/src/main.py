@@ -18,9 +18,9 @@ config = {
 }
 
 def main():
-    run_experiment(config["num_requests"], location = config['results_location'])
+    run_experiment(config["num_requests"], config['results_location'])
 
-def run_experiment(num_requests, location = None):
+def run_experiment(num_requests, location):
     #load the data
     data = load(config["dataset"], config['team_dictionary']) 
     win_rate = load_win_rate(config["win_rate_file"])
@@ -28,7 +28,7 @@ def run_experiment(num_requests, location = None):
     #instantiate the filtering model object
     model = Model(data, win_rate, config['num_recs'])
 
-    #sample input
+    #example input
     blue_team = ['121', '24', '18']
     red_team = ['11', '26']
     

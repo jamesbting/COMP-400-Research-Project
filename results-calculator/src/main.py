@@ -8,34 +8,46 @@ config = {
     "model":  "../nn-reward-function/models/champion-model-06-04-2021-1617757457-ls256-lr0.0005-l20.05/model.pickle",
     "recs_files": ['../mcts/results/recs-nn-06-04-2021-1617771805.csv'],
     "results_files":  ['../mcts/results/results-random-06-04-2021-1617771187.csv'],
-    'percentile': 0.99
+    'percentile': 0.99,
+    'hidden_units': 256
 }
 
 
 
 def main():
-    net = load_nn(config["model"], 256)
-    recs = []
-    for file in config["recs_files"]:
-        load_recommendations(recs, file)
-    latencies = []
-    memory = []
-    for file in config["results_files"]:
-        load_data(latencies, memory, file)
-
+    net = load_nn(config["model"], config['hidden_units']) #load the model with 256 hidden units
+    recs = get_recs_from_files(config['recs_files'])
+    latencies, memory = get_latencies_and_memory_from_files(config['results_files'])
+  
     mean_win_rate = calculate_mean_win_rate(net, recs)
     print(f'Mean win rate: {mean_win_rate}')
     k = config['percentile']
     latency_percentile = percentile(latencies, k)
-    print(f'Latency {k*100}-th percentile: {latency_percentile}')
+    print(f'{int(k*100)}-th percentile latency: {latency_percentile}')
 
-#load the recommendations from each file and append it to res
-def load_recommendations(res, filename):
+#get the recommendations from the files
+def get_recs_from_files(files):
+    recs = []
+    for file in files:
+        load_recommendations(recs, file)
+    return recs
+
+#get the latencies and memory from the files
+def get_latencies_and_memory_from_files(files):
+    latencies = []
+    memory = []
+    for file in files:
+        load_data(latencies, memory, file)
+    return latencies, memory
+
+#load the recommendations from a file and append it to res
+def load_recommendations(recs, filename):
     with open(filename, 'r') as f:
         reader = csv.reader(f, delimiter =',')
         for line in reader:
-            res.append(torch.Tensor(convert_to_state(line)))
-        
+            recs.append(torch.Tensor(convert_to_state(line)))
+
+#load the latencies and memory from a file and append to the lists
 def load_data(latencies, memory, filename):
      with open(filename, 'r') as f:
         reader = csv.reader(f, delimiter =',')
@@ -68,6 +80,7 @@ def load_nn(filename, num_units):
     model.eval()
     return model
 
+#compute the value for the percentile
 def percentile(data, k):
     if k < 0 or k > 1:
         raise ValueError

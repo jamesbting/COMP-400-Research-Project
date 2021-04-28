@@ -26,7 +26,7 @@ def treePolicy(node):
             curr = curr.best_child()
     return curr
 
-
+#iteratively backpropogate the rewards up all the nodes
 def backpropagate(node, reward):
     curr = node
     while curr is not None:

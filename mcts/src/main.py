@@ -35,7 +35,8 @@ def main():
 
     #apply the default policy and do any metadata setup
     if default_policy == 'random':
-        run_experiment(default_policy, i, initial_state, simulation.random_winner, location=save_location)
+        run_experiment(default_policy, i, initial_state, simulation.random_winner, 
+                        location=save_location)
     elif default_policy == 'cosine':
         combinations = simulation.cosine_metadata(config['filtered_dataset'])
         run_experiment(default_policy, i, initial_state, simulation.cosine_similarity, metadata=combinations,
@@ -55,7 +56,7 @@ def main():
 def run_experiment(default_policy, iterations, initial_state, simulation_function, metadata=None, location=None):
     results = []
     recs = []
-    for i in range(iterations):
+    for _ in range(iterations):
         time_and_mem, rec = run_algorithm(initial_state, simulation_function, simulation_metadata=metadata)
         results.append(time_and_mem)
         recs.append(rec)

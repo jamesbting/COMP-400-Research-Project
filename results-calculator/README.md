@@ -22,6 +22,7 @@ Before running the program, ensure that the file locations are as desired. The p
 - ```results_files```: A list containing strings that are paths to all the files with the latency and memory results. Each row should be 2 floats, where the first float is the latency and second float is the memory usage.
 - ```rec_files```: A list containing strings that are paths to all the files containing the recommendations. Each file should be a csv, where each row contains 10 numbers, representing the recommendation of the algorithm
 - ```percentile```: the percentile of latency to find. Default to 99th percentile
+- ```hidden_units```: the number of hidden units in the model
 
 
 
